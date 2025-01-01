@@ -1,0 +1,219 @@
+/* Global styles */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f9f9f9;  /* Soft off-white background for clarity */
+    color: #333;  /* Standard dark gray for text for readability */
+    margin: 0;
+    padding: 0;
+}
+
+/* Header Styles */
+h1 {
+    text-align: center;
+    color: #1E3A8A;  /* Professional blue for trust and stability */
+    font-size: 2.5em;
+    margin-top: 40px;
+}
+
+/* Container for the main content */
+.container {
+    width: 85%;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #ffffff;  /* Clean, minimal white background */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);  /* Light shadow for depth */
+    border-radius: 8px;
+    margin-top: 40px;
+}
+
+/* Form Styles */
+form {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);  /* Soft shadow for subtle depth */
+    margin-bottom: 30px;
+    border: 1px solid #e5e5e5;  /* Light border for a clean look */
+}
+
+/* Form Labels */
+form label {
+    display: block;
+    margin: 12px 0 6px;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #2C3E50;  /* Deep blue-gray for labels, representing professionalism */
+}
+
+/* Form Inputs and Select */
+form input, form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;  /* Subtle border for input fields */
+    border-radius: 6px;
+    font-size: 1em;
+    background-color: #fafafa;  /* Light gray background for inputs for a soft feel */
+    color: #555;  /* Dark gray text color for readability */
+    transition: all 0.3s ease;
+}
+
+form input:focus, form select:focus {
+    border-color: #4C9B5F;  /* Professional and calming green for focus */
+    outline: none;
+}
+
+/* Form Button */
+form button {
+    background-color: #4C9B5F;  /* Calming and professional green */
+    color: white;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #387F47;  /* Slightly darker green on hover */
+}
+
+/* Result Section */
+.result {
+    display: none;
+    margin-top: 40px;
+}
+
+h3 {
+    color: #2C3E50;  /* Professional blue-gray for result headings */
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+/* Styling for Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);  /* Subtle shadow to elevate tables */
+}
+
+table, th, td {
+    border: 1px solid #e5e5e5;  /* Light border for a clean and minimalist look */
+    padding: 16px;
+    text-align: left;
+}
+
+th {
+    background-color: #F4F6F8;  /* Very light gray for table headers for clarity */
+    color: #2C3E50;  /* Deep blue-gray for table header text */
+    font-weight: bold;
+}
+
+td {
+    background-color: #FFF;
+    color: #555;  /* Dark gray text for easy reading */
+}
+
+th, td {
+    font-size: 1em;
+}
+
+tr:nth-child(even) td {
+    background-color: #F9F9F9;  /* Alternating row colors for readability */
+}
+
+tr:hover {
+    background-color: #F1F1F1;  /* Hover effect with a light gray */
+}
+
+/* New specific styling for Calories column */
+th:nth-child(5), td:nth-child(5) {
+    text-align: center;
+    font-weight: bold;
+    color: #F39C12;  /* Warm yellow-orange for the calorie column */
+}
+
+/* Result content and tips */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 12px;
+    font-size: 1.1em;
+}
+
+ul li strong {
+    color: #2C3E50;  /* Consistent professional color for text */
+}
+
+/* Adjusted table styles for better readability */
+.table-wrapper {
+    overflow-x: auto;  /* Allow horizontal scroll for large tables */
+    margin-top: 30px;
+}
+
+/* Responsive styling for smaller screens */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    table, th, td {
+        font-size: 14px;
+    }
+
+    form input, form select, form button {
+        font-size: 14px;
+    }
+
+    /* Ensure tables are scrollable on smaller screens */
+    .table-wrapper {
+        overflow-x: scroll;
+    }
+}
+
+/* New Styles for Interactive Elements */
+button:disabled {
+    background-color: #ddd;  /* Disabled button looks muted and inactive */
+    cursor: not-allowed;
+}
+
+input[type="checkbox"] {
+    margin-right: 10px;
+    transform: scale(1.2);
+    vertical-align: middle;
+}
+
+input[type="checkbox"]:checked + label {
+    color: #27AE60;  /* Green when checked for affirmation */
+}
+
+input[type="checkbox"]:not(:checked) + label {
+    color: #E74C3C;  /* Red when unchecked for alert */
+}
+
+/* Notification Box */
+.notification {
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    border-left: 5px solid #4C9B5F;  /* Green left border for success */
+    font-size: 1.1em;
+    color: #333;
+}
+
+.notification.success {
+    border-color: #27AE60;  /* Professional green for success notifications */
+}
+
+.notification.error {
+    border-color: #E74C3C;  /* Red for error messages */
+}

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Plan Generator</title>
+    <link rel="stylesheet" href="style.css"> <!-- Include your CSS file -->
+</head>
+<body>
+    <div class="container">
+        <h1>Fitness Plan Generator</h1>
+        <form id="planForm">
+            <label for="goal">Training Goal:</label>
+            <input type="text" id="goal" name="goal" required>
+
+            <label for="diet_goal">Diet Goal (e.g., Weight Loss, Muscle Gain):</label>
+            <input type="text" id="diet_goal" name="diet_goal" required>
+
+            <label for="diet_type">Diet Type (e.g., Keto, Vegan):</label>
+            <input type="text" id="diet_type" name="diet_type" required>
+
+            <label for="include_cardio">Include Cardio (yes/no):</label>
+            <input type="text" id="include_cardio" name="include_cardio">
+
+            <label for="gym_days">Gym Days per Week:</label>
+            <input type="number" id="gym_days" name="gym_days" required>
+
+            <label for="cardio_days">Cardio Days per Week:</label>
+            <input type="number" id="cardio_days" name="cardio_days" required>
+
+            <label for="fitness_level">Fitness Level (Beginner, Intermediate, Advanced):</label>
+            <input type="text" id="fitness_level" name="fitness_level" required>
+
+            <label for="location">Location:</label>
+            <input type="text" id="location" name="location" required>
+
+            <button type="submit">Generate Plan</button>
+        </form>
+
+        <div id="result" class="notification"></div>
+    </div>
+
+    <script>
+        document.getElementById("planForm").addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const resultElement = document.getElementById("result");
+    resultElement.style.display = "none"; // Reset result visibility
+
+    const goal = document.getElementById("goal").value.trim();
+    const diet_goal = document.getElementById("diet_goal").value.trim();
+    const diet_type = document.getElementById("diet_type").value.trim();
+    const include_cardio = document.getElementById("include_cardio").value.trim();
+    const gym_days = parseInt(document.getElementById("gym_days").value);
+    const cardio_days = parseInt(document.getElementById("cardio_days").value);
+    const fitness_level = document.getElementById("fitness_level").value.trim();
+    const location = document.getElementById("location").value.trim();
+
+    // Basic validation
+    if (!goal || !diet_goal || !diet_type || !gym_days || !cardio_days || !fitness_level || !location) {
+        resultElement.textContent = "All required fields must be filled out.";
+        resultElement.className = "notification error";
+        resultElement.style.display = "block";
+        return;
+    }
+
+    try {
+        const response = await fetch("/ask", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                goal,
+                diet_goal,
+                diet_type,
+                include_cardio,
+                gym_days,
+                cardio_days,
+                fitness_level,
+                location
+            })
+        });
+
+        if (response.ok) {
+            const data = await response.json();
+            resultElement.innerHTML = data.answer || "Plan generated successfully.";  // Use innerHTML here to render HTML
+            resultElement.className = "notification success";
+        } else {
+            resultElement.textContent = "Error: Unable to fetch plan. Please try again.";
+            resultElement.className = "notification error";
+        }
+    } catch (error) {
+        resultElement.textContent = "Error: Unable to send request. Check your network connection.";
+        resultElement.className = "notification error";
+    }
+
+    resultElement.style.display = "block";
+});
+
+
+    </script>
+</body>
+</html>
